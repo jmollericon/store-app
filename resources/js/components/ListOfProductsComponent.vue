@@ -4,11 +4,14 @@
     <ul class="list-group">
       <li
         class="list-group-item"
-        v-for="product in data_products" :key="product.id"
+        v-for="(product, index) in data_products" :key="product.id"
       >
-        <span class="badge badge-primary float-right">{{product.updated_at}}</span>
-        <p class="my-0">{{product.name}} - <span class="my-0 font-weight-bold">Bs. {{product.price}}</span></p>
+        <span
+          class="badge badge-primary float-right"
+        >{{product.updated_at}}</span>
+        <p class="my-0">{{index+1}} - {{product.name}} - <span class="my-0 font-weight-bold">Bs. {{product.price}}</span></p>
         <small>{{product.description}}</small>
+        <button class="btn btn-danger btn-sm float-right" @click="delete_product(product, index)">Delete</button>
       </li>
     </ul>
   </div>
@@ -16,9 +19,14 @@
 
 <script>
 export default {
-  props: ['data_products'],
+  props: ['data_products', 'deleteProduct'],
   methods: {
-    
+    delete_product(product, index) {
+      axios.delete(`/products/${product.id}`)
+      .then(() => {
+        this.deleteProduct(index);
+      });
+    }
   }
 }
 </script>

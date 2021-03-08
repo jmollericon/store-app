@@ -1,7 +1,8 @@
 <template>
   <div>
     <create-product :updateListOfProducts="updateList"/>
-    <list-of-products :data_products="products"/>
+    <hr />
+    <list-of-products :data_products="products" :deleteProduct="deleteProduct"/>
   </div>
 </template>
 
@@ -21,6 +22,9 @@ export default {
   methods: {
     updateList(new_product) {
       this.products.push(new_product);
+    },
+    deleteProduct(index) {
+      this.products.splice(index, 1);
     }
   }
 }

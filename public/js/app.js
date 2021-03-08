@@ -1995,9 +1995,20 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  props: ['data_products'],
-  methods: {}
+  props: ['data_products', 'deleteProduct'],
+  methods: {
+    delete_product: function delete_product(product, index) {
+      var _this = this;
+
+      axios["delete"]("/products/".concat(product.id)).then(function () {
+        _this.deleteProduct(index);
+      });
+    }
+  }
 });
 
 /***/ }),
@@ -2013,6 +2024,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+//
 //
 //
 //
@@ -2036,6 +2048,9 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     updateList: function updateList(new_product) {
       this.products.push(new_product);
+    },
+    deleteProduct: function deleteProduct(index) {
+      this.products.splice(index, 1);
     }
   }
 });
@@ -38038,20 +38053,33 @@ var render = function() {
     _c(
       "ul",
       { staticClass: "list-group" },
-      _vm._l(_vm.data_products, function(product) {
+      _vm._l(_vm.data_products, function(product, index) {
         return _c("li", { key: product.id, staticClass: "list-group-item" }, [
           _c("span", { staticClass: "badge badge-primary float-right" }, [
             _vm._v(_vm._s(product.updated_at))
           ]),
           _vm._v(" "),
           _c("p", { staticClass: "my-0" }, [
-            _vm._v(_vm._s(product.name) + " - "),
+            _vm._v(_vm._s(index + 1) + " - " + _vm._s(product.name) + " - "),
             _c("span", { staticClass: "my-0 font-weight-bold" }, [
               _vm._v("Bs. " + _vm._s(product.price))
             ])
           ]),
           _vm._v(" "),
-          _c("small", [_vm._v(_vm._s(product.description))])
+          _c("small", [_vm._v(_vm._s(product.description))]),
+          _vm._v(" "),
+          _c(
+            "button",
+            {
+              staticClass: "btn btn-danger btn-sm float-right",
+              on: {
+                click: function($event) {
+                  return _vm.delete_product(product, index)
+                }
+              }
+            },
+            [_vm._v("Delete")]
+          )
         ])
       }),
       0
@@ -38086,7 +38114,11 @@ var render = function() {
     [
       _c("create-product", { attrs: { updateListOfProducts: _vm.updateList } }),
       _vm._v(" "),
-      _c("list-of-products", { attrs: { data_products: _vm.products } })
+      _c("hr"),
+      _vm._v(" "),
+      _c("list-of-products", {
+        attrs: { data_products: _vm.products, deleteProduct: _vm.deleteProduct }
+      })
     ],
     1
   )
