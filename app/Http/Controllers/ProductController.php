@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -11,9 +12,13 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        if ($request->ajax()) {
+            return Product::where('user_id', auth()->id())->get();
+        } else {
+            return view('home');
+        }
     }
 
     /**
@@ -34,7 +39,13 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $product = new Product();
+        $product->name = $request->name;
+        $product->description = $request->description;
+        $product->product_category_id = $request->product_category_id;
+        $product->user_id = auth()->id();
+        $product->save();
+        return $product;
     }
 
     /**
