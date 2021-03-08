@@ -20,7 +20,8 @@ window.Vue = require('vue').default;
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
-
+Vue.component('product', require('./components/ProductComponent.vue').default);
+Vue.component('create-product', require('./components/CreateProductComponent.vue').default);
 Vue.component('list-of-products', require('./components/ListOfProductsComponent.vue').default);
 
 /**
