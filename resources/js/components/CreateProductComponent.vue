@@ -72,7 +72,7 @@ export default {
       axios.post('/products', params)
         .then(res => {
           console.log('resultado del axios', res);
-          this.updateListOfProducts(res.data);
+          this.updateListOfProducts(res.data, 'store');
         })
     }
   }

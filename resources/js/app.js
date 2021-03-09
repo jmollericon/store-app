@@ -22,6 +22,7 @@ window.Vue = require('vue').default;
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 Vue.component('product', require('./components/ProductComponent.vue').default);
 Vue.component('create-product', require('./components/CreateProductComponent.vue').default);
+Vue.component('edit-product', require('./components/EditProductComponent.vue').default);
 Vue.component('list-of-products', require('./components/ListOfProductsComponent.vue').default);
 
 /**
