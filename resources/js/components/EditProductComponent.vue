@@ -8,7 +8,7 @@
             type="text"
             class="form-control"
             placeholder="Name"
-            v-model="product_edit.name"
+            v-model="product.name"
             required
           >
         </div>
@@ -17,7 +17,7 @@
             type="number"
             class="form-control"
             placeholder="Price"
-            v-model="product_edit.price"
+            v-model="product.price"
             step="0.01"
             min="0"
             required
@@ -27,7 +27,7 @@
           <textarea
             class="form-control"
             placeholder="Description"
-            v-model="product_edit.description"
+            v-model="product.description"
             rows="2"
             required
           ></textarea>
@@ -35,7 +35,7 @@
         <div class="col-md-6 mb-2">
           <select
             class="form-control"
-            v-model="product_edit.product_category_id"
+            v-model="product.product_category_id"
             required
           >
             <option value="1">Food</option>
@@ -56,7 +56,7 @@ export default {
   data() {
     console.log('data edit coponente');
     return {
-      product_edit: this.data_product,
+      product: this.data_product,
     }
   },
   mounted() {
@@ -65,15 +65,15 @@ export default {
   methods: {
     update_product() {
       const params = {
-        name: this.product_edit.name,
-        description: this.product_edit.description,
-        price: this.product_edit.price,
-        product_category_id: this.product_edit.product_category_id
+        name: this.product.name,
+        description: this.product.description,
+        price: this.product.price,
+        product_category_id: this.product.product_category_id
       }
-      this.product_edit.name = '';
-      this.product_edit.description = '';
-      this.product_edit.price = '';
-      this.product_edit.product_category_i = '';
+      this.product.name = '';
+      this.product.description = '';
+      this.product.price = '';
+      this.product.product_category_i = '';
       axios.put(`/products/${this.data_product.id}`, params)
         .then(res => {
           this.updateListOfProducts(res.data, 'update');

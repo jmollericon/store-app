@@ -2001,7 +2001,7 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     console.log('data edit coponente');
     return {
-      product_edit: this.data_product
+      product: this.data_product
     };
   },
   mounted: function mounted() {
@@ -2012,15 +2012,15 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       var params = {
-        name: this.product_edit.name,
-        description: this.product_edit.description,
-        price: this.product_edit.price,
-        product_category_id: this.product_edit.product_category_id
+        name: this.product.name,
+        description: this.product.description,
+        price: this.product.price,
+        product_category_id: this.product.product_category_id
       };
-      this.product_edit.name = '';
-      this.product_edit.description = '';
-      this.product_edit.price = '';
-      this.product_edit.product_category_i = '';
+      this.product.name = '';
+      this.product.description = '';
+      this.product.price = '';
+      this.product.product_category_i = '';
       axios.put("/products/".concat(this.data_product.id), params).then(function (res) {
         _this.updateListOfProducts(res.data, 'update');
       });
@@ -38216,19 +38216,19 @@ var render = function() {
                 {
                   name: "model",
                   rawName: "v-model",
-                  value: _vm.product_edit.name,
-                  expression: "product_edit.name"
+                  value: _vm.product.name,
+                  expression: "product.name"
                 }
               ],
               staticClass: "form-control",
               attrs: { type: "text", placeholder: "Name", required: "" },
-              domProps: { value: _vm.product_edit.name },
+              domProps: { value: _vm.product.name },
               on: {
                 input: function($event) {
                   if ($event.target.composing) {
                     return
                   }
-                  _vm.$set(_vm.product_edit, "name", $event.target.value)
+                  _vm.$set(_vm.product, "name", $event.target.value)
                 }
               }
             })
@@ -38240,8 +38240,8 @@ var render = function() {
                 {
                   name: "model",
                   rawName: "v-model",
-                  value: _vm.product_edit.price,
-                  expression: "product_edit.price"
+                  value: _vm.product.price,
+                  expression: "product.price"
                 }
               ],
               staticClass: "form-control",
@@ -38252,13 +38252,13 @@ var render = function() {
                 min: "0",
                 required: ""
               },
-              domProps: { value: _vm.product_edit.price },
+              domProps: { value: _vm.product.price },
               on: {
                 input: function($event) {
                   if ($event.target.composing) {
                     return
                   }
-                  _vm.$set(_vm.product_edit, "price", $event.target.value)
+                  _vm.$set(_vm.product, "price", $event.target.value)
                 }
               }
             })
@@ -38270,19 +38270,19 @@ var render = function() {
                 {
                   name: "model",
                   rawName: "v-model",
-                  value: _vm.product_edit.description,
-                  expression: "product_edit.description"
+                  value: _vm.product.description,
+                  expression: "product.description"
                 }
               ],
               staticClass: "form-control",
               attrs: { placeholder: "Description", rows: "2", required: "" },
-              domProps: { value: _vm.product_edit.description },
+              domProps: { value: _vm.product.description },
               on: {
                 input: function($event) {
                   if ($event.target.composing) {
                     return
                   }
-                  _vm.$set(_vm.product_edit, "description", $event.target.value)
+                  _vm.$set(_vm.product, "description", $event.target.value)
                 }
               }
             })
@@ -38296,8 +38296,8 @@ var render = function() {
                   {
                     name: "model",
                     rawName: "v-model",
-                    value: _vm.product_edit.product_category_id,
-                    expression: "product_edit.product_category_id"
+                    value: _vm.product.product_category_id,
+                    expression: "product.product_category_id"
                   }
                 ],
                 staticClass: "form-control",
@@ -38313,7 +38313,7 @@ var render = function() {
                         return val
                       })
                     _vm.$set(
-                      _vm.product_edit,
+                      _vm.product,
                       "product_category_id",
                       $event.target.multiple ? $$selectedVal : $$selectedVal[0]
                     )
